@@ -1,4 +1,4 @@
-package com.softtcode.todo.entity;
+package com.softtcode.todo.model.entity;
 
 import com.softtcode.todo.base.BaseEntity;
 import lombok.Data;
