@@ -19,7 +19,7 @@ public class SecurityConfiguration {
         http.httpBasic().disable();
         http.formLogin().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().anyRequest().permitAll();
+        http.authorizeRequests().antMatchers("/api/register","/api/login").permitAll();
         return http.build();
     }
 }
