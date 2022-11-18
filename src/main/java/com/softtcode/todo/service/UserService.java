@@ -4,7 +4,6 @@ import com.softtcode.todo.model.entity.User;
 import com.softtcode.todo.model.request.RegisterFormRequest;
 import com.softtcode.todo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
