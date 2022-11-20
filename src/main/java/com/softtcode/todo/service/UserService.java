@@ -1,5 +1,6 @@
 package com.softtcode.todo.service;
 
+import com.softtcode.todo.helper.JwtHelper;
 import com.softtcode.todo.model.entity.User;
 import com.softtcode.todo.model.request.LoginFormRequest;
 import com.softtcode.todo.model.request.RegisterFormRequest;
@@ -22,10 +23,15 @@ import java.util.ArrayList;
 @RequiredArgsConstructor
 public class UserService implements UserDetailsService {
 
-    private final PasswordEncoder passwordEncoder;
-    private final UserRepository userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtHelper jwtHelper;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -52,6 +58,7 @@ public class UserService implements UserDetailsService {
     public LoginResponse login(LoginFormRequest formRequest) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(formRequest.getEmail(),formRequest.getPassword());
         Authentication authentication = authenticationManager.authenticate(token);
-        return null;
+        String jwtToken = jwtHelper.generateJwt(formRequest.getEmail());
+        return new LoginResponse(jwtToken,formRequest.getEmail());
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 @Entity(name = "users")
 @Data
 public class User extends BaseEntity {
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String email;
     @Column(nullable = false)
     private String password;

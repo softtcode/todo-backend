@@ -22,19 +22,15 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
-
     @PostMapping("register")
     public ResponseEntity<BaseResponse<?>> userRegister(@RequestBody @Valid RegisterFormRequest formRequest){
         userService.register(formRequest);
-        BaseResponse<?> response = new BaseResponse<>();
-        response.setSuccess(true);
-        response.getMessages().add("Kayıt Başarılı.");
-        return new ResponseEntity<BaseResponse<?>>(response, HttpStatus.CREATED);
+        return ResponseEntity.ok(BaseResponse.ok());
     }
 
     @PostMapping("/login")
     public ResponseEntity<BaseResponse<LoginResponse>> login(@RequestBody @Valid LoginFormRequest formRequest){
        LoginResponse data = userService.login(formRequest);
-        return null;
+       return ResponseEntity.ok(BaseResponse.ok(data));
     }
 }
