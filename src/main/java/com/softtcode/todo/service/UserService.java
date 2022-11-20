@@ -29,7 +29,6 @@ public class UserService implements UserDetailsService {
     private UserRepository userRepository;
     @Autowired
     private AuthenticationManager authenticationManager;
-
     @Autowired
     private JwtHelper jwtHelper;
 
