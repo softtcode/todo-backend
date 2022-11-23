@@ -60,4 +60,9 @@ public class UserService implements UserDetailsService {
         String jwtToken = jwtHelper.generateJwt(formRequest.getEmail());
         return new LoginResponse(jwtToken,formRequest.getEmail());
     }
+
+    public Long findById(String email){
+        User dbUser = userRepository.findByEmail(email);
+        return dbUser.getId();
+    }
 }
